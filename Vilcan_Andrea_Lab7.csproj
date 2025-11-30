@@ -18,9 +18,7 @@
 
 <ItemGroup>
   <MauiImage Include="Resources\Images\*" />
-  <MauiIcon Include="Resources\AppIcon\appicon.svg"
-            ForegroundFile="Resources\AppIcon\appiconfg.svg"
-            Color="#512BD4" />
+  <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +27,10 @@
 
   <ItemGroup>
     <MauiAsset Include="Resources\Raw\*" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
   </ItemGroup>
 
 </Project>
