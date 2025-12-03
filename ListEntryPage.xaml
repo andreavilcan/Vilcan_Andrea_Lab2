@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vilcan_Andrea_Lab7.ListEntryPage"
              Title="ListEntryPage">
-
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Shopping List"
                      Clicked="OnShopListAddedClicked" />
@@ -19,5 +18,4 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-
 </ContentPage>

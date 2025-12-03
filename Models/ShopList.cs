@@ -1,5 +1,5 @@
 using SQLite;
-
+using SQLiteNetExtensions.Attributes;
 namespace Vilcan_Andrea_Lab7.Models;
 
 public class ShopList

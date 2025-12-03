@@ -1,36 +1,39 @@
+using System;
+using Microsoft.Maui.Controls;
 using Vilcan_Andrea_Lab7.Models;
 
-namespace Vilcan_Andrea_Lab7;
-
-public partial class ListEntryPage : ContentPage
+namespace Vilcan_Andrea_Lab7
 {
-    public ListEntryPage()
+    public partial class ListEntryPage : ContentPage
     {
-        InitializeComponent();
-    }
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        listView.ItemsSource = await App.Database.GetShopListsAsync();
-    }
-
-    async void OnShopListAddedClicked(object sender, EventArgs e)
-    {
-        await Navigation.PushAsync(new ListPage
+        public ListEntryPage()
         {
-            BindingContext = new ShopList()
-        });
-    }
+            InitializeComponent();
+        }
 
-    async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
-    {
-        if (e.SelectedItem != null)
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            listView.ItemsSource = await App.Database.GetShopListsAsync();
+        }
+
+        async void OnShopListAddedClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ListPage
             {
-                BindingContext = e.SelectedItem as ShopList
+                BindingContext = new ShopList()
             });
+        }
+
+        async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+                await Navigation.PushAsync(new ListPage
+                {
+                    BindingContext = e.SelectedItem as ShopList
+                });
+            }
         }
     }
 }
