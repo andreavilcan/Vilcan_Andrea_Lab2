@@ -1,13 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+using Microsoft.Maui.Storage;
 using Vilcan_Andrea_Lab7.Data;
 
 namespace Vilcan_Andrea_Lab7;
 
 public partial class App : Application
 {
-    // instanța statică a bazei de date
-    static ShoppingListDatabase? database;
+    private static ShoppingListDatabase? database;
 
     public static ShoppingListDatabase Database
     {
@@ -15,10 +14,7 @@ public partial class App : Application
         {
             if (database == null)
             {
-                var path = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                    "ShoppingList.db3");
-
+                var path = Path.Combine(FileSystem.AppDataDirectory, "ShoppingList.db3");
                 database = new ShoppingListDatabase(path);
             }
 
@@ -29,6 +25,7 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+
         MainPage = new AppShell();
     }
 }

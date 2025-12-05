@@ -15,6 +15,12 @@ namespace Vilcan_Andrea_Lab7
         {
             var slist = (ShopList)BindingContext;
             slist.Date = DateTime.UtcNow;
+
+            if (ShopPicker.SelectedItem is Shop selectedShop)
+            {
+                slist.ShopID = selectedShop.ID;
+            }
+
             await App.Database.SaveShopListAsync(slist);
             await Navigation.PopAsync();
         }
@@ -39,10 +45,14 @@ namespace Vilcan_Andrea_Lab7
         {
             base.OnAppearing();
 
-            var shopl = (ShopList)BindingContext;
+            var shops = await App.Database.GetShopsAsync();
+            ShopPicker.ItemsSource = shops;
+            ShopPicker.ItemDisplayBinding = new Binding("ShopDetails");
 
+            var shopl = (ShopList)BindingContext;
             listView.ItemsSource = await App.Database.GetListProductsAsync(shopl.ID);
         }
+        
 
         async void OnDeleteItemButtonClicked(object sender, EventArgs e)
         {
